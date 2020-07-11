@@ -21,10 +21,10 @@
         weight = SPAWN_WEIGHT.ZERO;
     }
 
-    public static SpawnWeight operator++ (SpawnWeight s)
+    public static SpawnWeight operator++ (SpawnWeight sw)
     {
-        var newWeight = new SpawnWeight(s.id);
-        switch(s.weight)
+        var newWeight = new SpawnWeight(sw.id);
+        switch(sw.weight)
         {
             case SPAWN_WEIGHT.ZERO:
                 newWeight.weight = SPAWN_WEIGHT.ONE;
@@ -40,19 +40,19 @@
         return newWeight;
     }
 
-    public static SpawnWeight operator+ (SpawnWeight s , int d)
+    public static SpawnWeight operator+ (SpawnWeight sw , int d)
     {
         for (int i = 0; i < d; ++i)
         {
-            ++s;
+            ++sw;
         }
-        return s;
+        return sw;
     }
 
-    public static SpawnWeight operator-- (SpawnWeight s)
+    public static SpawnWeight operator-- (SpawnWeight sw)
     {
-        var newWeight = new SpawnWeight(s.id);
-        switch(s.weight)
+        var newWeight = new SpawnWeight(sw.id);
+        switch(sw.weight)
         {
             case SPAWN_WEIGHT.ZERO:
             case SPAWN_WEIGHT.ONE:
@@ -68,12 +68,12 @@
         return newWeight;
     }
 
-    public static SpawnWeight operator- (SpawnWeight s, int d)
+    public static SpawnWeight operator- (SpawnWeight sw, int d)
     {
         for (int i = 0; i < d; ++i)
         {
-            --s;
+            --sw;
         }
-        return s;
+        return sw;
     }
 }

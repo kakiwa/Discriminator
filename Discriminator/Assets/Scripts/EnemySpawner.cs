@@ -45,7 +45,8 @@ public class EnemySpawner : MonoBehaviour
         var zone = enemySpawnZones.Find(_ => _.ZoneId() == spawnZoneId);
         var e = Instantiate(enemy, zone.transform);
         var eS = new EnemyStatus();
-        eS.colorState = COLOR_STATE.A;
+        // 色はテキトー
+        eS.colorState = (COLOR_STATE)Random.Range(0, 2);
         eS.speed = 0.08f;
 
         // どこへ向かうのか
