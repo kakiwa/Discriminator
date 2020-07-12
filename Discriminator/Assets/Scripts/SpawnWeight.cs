@@ -27,17 +27,17 @@
         switch(sw.weight)
         {
             case SPAWN_WEIGHT.ZERO:
-                newWeight.weight = SPAWN_WEIGHT.ONE;
+                sw.weight = SPAWN_WEIGHT.ONE;
                 break;
             case SPAWN_WEIGHT.ONE:
-                newWeight.weight = SPAWN_WEIGHT.TWO;
+                sw.weight = SPAWN_WEIGHT.TWO;
                 break;
             case SPAWN_WEIGHT.TWO:
             case SPAWN_WEIGHT.THREE:
-                newWeight.weight = SPAWN_WEIGHT.THREE;
+                sw.weight = SPAWN_WEIGHT.THREE;
                 break;
         }
-        return newWeight;
+        return sw;
     }
 
     public static SpawnWeight operator+ (SpawnWeight sw , int d)

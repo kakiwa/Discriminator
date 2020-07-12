@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
-        if (t >= 1.5f)
+        if (t >= 0.005f)
         {
             Spawn();
             t = 0;
@@ -63,8 +63,39 @@ public class EnemySpawner : MonoBehaviour
     // 重みを元に次の発生ゾーンを返す
     uint GetNextSpawnDecide()
     {
-        // TODO:ちゃんと重みを元に返すようにする
-        return (uint)(Random.Range(1, spawnWeights.Count + 1));
+        // 重みの総数を合算
+        int allWeight = 0;
+        spawnWeights.ForEach(
+            _ =>
+            {
+                allWeight += (int)_.weight;
+            }
+        );
+
+        // ランダムで数字を選ぶ
+        var num = Random.Range(1, allWeight + 1);
+
+        // どの範囲に数字があるか
+        int check = 0;
+        uint spawnId = 0;
+        spawnWeights.ForEach(
+            _ =>
+            {
+                if (num <= check) return;
+                if (_.weight == SpawnWeight.SPAWN_WEIGHT.ZERO) return;
+                check += (int)_.weight;
+                spawnId = _.id;
+            }
+        );
+
+        if (
+            spawnId == 0 ||
+            check > allWeight
+        ) {
+            Debug.LogError("お？" + " spawnId:" + spawnId + " check:" + check + " allWeight:" + allWeight);
+        }
+
+        return spawnId;
     }
 
     /// <summary>
@@ -97,7 +128,7 @@ public class EnemySpawner : MonoBehaviour
                     {
                         if (sideId == spawnWeight.id)
                         {
-                            spawnWeight += 2;
+                            spawnWeight -= 2;
                         }
                     }
                 );
