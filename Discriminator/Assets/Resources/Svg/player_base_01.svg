@@ -1,0 +1,34 @@
+<svg id="基盤" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3f3a39;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #eff2f0;
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        fill: #eff2f0;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle id="楕円形_2" data-name="楕円形 2" class="cls-1" cx="128" cy="128" r="128"/>
+  <circle id="楕円形_2_のコピー_6" data-name="楕円形 2 のコピー 6" class="cls-2" cx="127.997" cy="128" r="94.122"/>
+  <g id="グループ_3" data-name="グループ 3">
+    <path id="長方形_2" data-name="長方形 2" class="cls-3" d="M982.5,565L996,578H969Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_2" data-name="長方形 2 のコピー 2" class="cls-3" d="M982.5,693L969,680h27Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_3" data-name="長方形 2 のコピー 3" class="cls-3" d="M1047,629.5L1034,643V616Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_3-2" data-name="長方形 2 のコピー 3" class="cls-3" d="M919,629.5L932,616v27Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_4" data-name="長方形 2 のコピー 4" class="cls-3" d="M1028.25,674.753l-18.73.354,19.09-19.089Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_4-2" data-name="長方形 2 のコピー 4" class="cls-3" d="M937.747,584.247l18.735-.354-19.089,19.089Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_5" data-name="長方形 2 のコピー 5" class="cls-3" d="M938.34,674.66l-0.353-18.7,19.049,19.049Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー_5-2" data-name="長方形 2 のコピー 5" class="cls-3" d="M1028.66,584.34l0.35,18.7-19.05-19.049Z" transform="translate(-854 -501)"/>
+    <path id="長方形_2_のコピー" data-name="長方形 2 のコピー" class="cls-3" d="M981.5,565,995,578H968" transform="translate(-854 -501)"/>
+    <circle id="楕円形_2_のコピー_7" data-name="楕円形 2 のコピー 7" class="cls-2" cx="127.94" cy="128.093" r="54.471"/>
+  </g>
+</svg>
