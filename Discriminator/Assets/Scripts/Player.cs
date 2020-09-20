@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(joystick.Horizontal * speed, joystick.Vertical * speed);
+        if (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f) {
+            rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, Input.GetAxis("Vertical") * speed);
+        } else {
+            rb.velocity = new Vector2(joystick.Horizontal * speed, joystick.Vertical * speed);
+        }
     }
 }

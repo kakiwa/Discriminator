@@ -11,6 +11,8 @@ public class GameDirector : MonoBehaviour, IGameDirector
 
     COLOR_STATE currentColor = default;
 
+    GAME_LEVEL currentGameLevel = default;
+
     public void ColorChange()
     {
         if (currentColor == COLOR_STATE.A) {
@@ -23,6 +25,11 @@ public class GameDirector : MonoBehaviour, IGameDirector
         player.setColorState(currentColor);
     }
 
+    public void LevelUp()
+    {
+        ++currentGameLevel;
+    }
+
     public void Hit(COLOR_STATE colorState)
     {
         if (currentColor == colorState)
@@ -30,4 +37,15 @@ public class GameDirector : MonoBehaviour, IGameDirector
             scoreBoard.addScore();
         }
     }
+
+    public Player getPlayerInstance()
+    {
+        return player;
+    }
+
+    public GAME_LEVEL GetGameLevel()
+    {
+        return currentGameLevel;
+    }
+
 }

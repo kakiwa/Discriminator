@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject enemy = default;
+    [SerializeField] private GameObject[] enemyKinds = default;
     [SerializeField] private Transform spawnField = default;
     [SerializeField] private GameDirector gameDirector = default;
     private List<EnemySpawnZone> enemySpawnZones = new List<EnemySpawnZone>();
@@ -25,13 +25,16 @@ public class EnemySpawner : MonoBehaviour
         // 一体目の出現ポイントを決めておく
         int startId = Random.Range(1, size + 1);
         SpawnWeightUpdate((uint)startId);
+        Spawn();
     }
 
     float t = 0;
     void Update()
     {
+        // TODO: スポーンする条件を考える
+
         t += Time.deltaTime;
-        if (t >= 0.005f)
+        if (t >= 0.5f)
         {
             Spawn();
             t = 0;
@@ -40,21 +43,23 @@ public class EnemySpawner : MonoBehaviour
 
     public void Spawn()
     {
+        // スポーンするゾーン決定
         var spawnZoneId = GetNextSpawnDecide();
-        // スポーンする座標決定
         var zone = enemySpawnZones.Find(_ => _.ZoneId() == spawnZoneId);
-        var e = Instantiate(enemy, zone.transform);
+
+        var e = Instantiate(enemyKinds[getEnemyKind()], zone.GetPos(), Quaternion.identity, zone.transform);
+
+        // 敵ステータスを生成
         var eS = new EnemyStatus();
+        eS.currentLevel = gameDirector.GetGameLevel();
+
         // 色はテキトー
-        eS.colorState = (COLOR_STATE)Random.Range(0, 2);
-        eS.speed = 0.08f;
+        eS.colorState = (COLOR_STATE)Random.Range(0, System.Enum.GetValues(typeof(COLOR_STATE)).Length);
 
         // どこへ向かうのか
-        // ターゲットゾーンのID取得
-        var moveV = zone.GetTargetPos() - zone.transform.position;
-        moveV.Normalize();
-        eS.moveVec = moveV;
-        e.GetComponent<Enemy>().Spawn(gameDirector, eS);
+        eS.targetPos = zone.GetTarget();
+
+        e.GetComponent<EnemyBase>().Spawn(gameDirector.gameObject, eS);
 
         // 重み更新
         SpawnWeightUpdate(spawnZoneId);
@@ -79,12 +84,12 @@ public class EnemySpawner : MonoBehaviour
         int check = 0;
         uint spawnId = 0;
         spawnWeights.ForEach(
-            _ =>
+            spawnData =>
             {
                 if (num <= check) return;
-                if (_.weight == SpawnWeight.SPAWN_WEIGHT.ZERO) return;
-                check += (int)_.weight;
-                spawnId = _.id;
+                if (spawnData.weight == SpawnWeight.SPAWN_WEIGHT.ZERO) return;
+                check += (int)spawnData.weight;
+                spawnId = spawnData.id;
             }
         );
 
@@ -145,6 +150,11 @@ public class EnemySpawner : MonoBehaviour
                 );
             }
         );
+    }
+
+    int getEnemyKind() {
+        // TODO:レベルによって出現する敵の種類の確率を変える
+        return Random.Range(0, enemyKinds.Length);
     }
 
 }
