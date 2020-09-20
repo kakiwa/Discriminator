@@ -8,9 +8,20 @@ public enum COLOR_STATE : int {
     B
 }
 
+/// <summary>
+/// ゲームレベル (敵のステータスを増減させるために使用)
+/// </summary>
+public enum GAME_LEVEL
+{
+    ONE,
+    TWO,
+    THREE,
+}
+
 public struct EnemyStatus
 {
     public COLOR_STATE colorState {get;set;}
     public float speed {get;set;}
-    public Vector2 moveVec {get;set;}
+    public Vector3 targetPos {get;set;}
+    public GAME_LEVEL currentLevel {get;set;}
 }

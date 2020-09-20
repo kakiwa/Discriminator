@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreBoard : MonoBehaviour
 {
-    [SerializeField] private GameDirector gameDirector = default;
+    // [SerializeField] private GameDirector gameDirector = default;
     [SerializeField] private Text text = default;
     int score = default;
 

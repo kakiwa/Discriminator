@@ -20,5 +20,9 @@ public class Timer : MonoBehaviour
     {
         time += Time.deltaTime;
         text.text = time.ToString("F2");
+
+        if (time == 30f) {
+            // gameDirector.LevelUp();
+        }
     }
 }

@@ -7,5 +7,7 @@ public interface IGameDirector : IEventSystemHandler
 
     void Hit(COLOR_STATE c);
 
+    void LevelUp();
 
+    Player getPlayerInstance();
 }
