@@ -24,7 +24,6 @@ public class Tracker : EnemyBase
             null,
             (_, data) => {
                 playerTrans = _.getPlayerInstance().transform;
-                Debug.Log("a");
             }
         );
 

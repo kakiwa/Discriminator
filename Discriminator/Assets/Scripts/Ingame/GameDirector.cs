@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDirector : MonoBehaviour, IGameDirector
+
+public class GameDirector : DirectorBase, IGameDirector
 {
     [SerializeField] private Player player = default;
-    [SerializeField] private Timer timer = default;
     [SerializeField] private ScoreBoard scoreBoard = default;
     [SerializeField] private EnemySpawner enemySpawner = default;
 
@@ -48,4 +48,12 @@ public class GameDirector : MonoBehaviour, IGameDirector
         return currentGameLevel;
     }
 
+    public void EndGame()
+    {
+        Debug.Log("end");
+        enemySpawner.gameObject.SetActive(false);
+        player.enabled = false;
+        scoreBoard.enabled = false;
+        executeSceneChange("Ingame", "Result");
+    }
 }

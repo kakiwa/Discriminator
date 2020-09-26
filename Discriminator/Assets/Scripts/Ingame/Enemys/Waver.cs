@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 public class Waver : EnemyBase
 {
-    float waveWidth = default;
-
     Vector3 rightVec = default;
 
     float time = default;
