@@ -7,17 +7,22 @@ public class ColorChangeButton : MonoBehaviour
 
     public void OnExecute()
     {
-        ExecuteEvents.Execute<IGameDirector>(
-            director,
-            null,
-            (_, data) =>_.ColorChange()
-        );
+        send();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            OnExecute();
+            send();
         }
+    }
+
+    private void send()
+    {
+        ExecuteEvents.Execute<IGameDirector>(
+            director,
+            null,
+            (_, data) =>_.ColorChange()
+        );
     }
 }

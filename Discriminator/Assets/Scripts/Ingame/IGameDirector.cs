@@ -10,4 +10,6 @@ public interface IGameDirector : IEventSystemHandler
     void LevelUp();
 
     Player getPlayerInstance();
+
+    void EndGame();
 }
