@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public interface ISceneDirector : IEventSystemHandler
 {
-    UniTask SceneChange(string currentSceneName, string nextSceneName);
+    UniTask SceneChange(string nextSceneName);
 
     UniTask AddScene(string name);
 

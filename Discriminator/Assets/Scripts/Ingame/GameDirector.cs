@@ -54,6 +54,6 @@ public class GameDirector : DirectorBase, IGameDirector
         enemySpawner.gameObject.SetActive(false);
         player.enabled = false;
         scoreBoard.enabled = false;
-        executeSceneChange("Ingame", "Result");
+        executeSceneAdd("Result");
     }
 }

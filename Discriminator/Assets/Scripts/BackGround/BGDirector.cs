@@ -9,6 +9,9 @@ public class BGDirector : MonoBehaviour, IBGDirector , ISceneDirector
 {
     static public bool isLoaded {get;set;}
 
+    [SerializeField]
+    private GameObject backMan = default;
+
     public async UniTask AddScene(string name)
     {
         await SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
@@ -19,18 +22,32 @@ public class BGDirector : MonoBehaviour, IBGDirector , ISceneDirector
         await SceneManager.UnloadSceneAsync(name);
     }
 
-    public async UniTask SceneChange(string currentSceneName, string nextSceneName)
+    public async UniTask SceneChange(string nextSceneName)
     {
-        var currentScene = SceneManager.GetSceneByName(currentSceneName);
+        List<Scene> currentScenes = new List<Scene>();
+        for (var idx = 0; idx < SceneManager.sceneCount; ++idx)
+        {
+            var scene = SceneManager.GetSceneAt(idx);
+            if (scene.name == "BackGround") continue;
+            currentScenes.Add(scene);
+        }
         var nextScene = SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
         nextScene.allowSceneActivation = false;
 
         await DOTween.Sequence()
-            .SetDelay(1.0f)
+            .Append(
+                backMan.transform.DORotate(new Vector3(0,0,359), 0.5f, RotateMode.FastBeyond360)
+            )
+            .Append(
+                backMan.transform.DORotate(new Vector3(0,0,0), 0.5f, RotateMode.FastBeyond360)
+            )
             .OnComplete(
                 () =>
                 {
-                    SceneManager.UnloadSceneAsync(currentScene);
+                    foreach (var scene in currentScenes)
+                    {
+                        SceneManager.UnloadSceneAsync(scene);
+                    }
                     // シーン開始
                     nextScene.allowSceneActivation = true;
                 }

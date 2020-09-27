@@ -4,7 +4,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class RseultDirector : DirectorBase, IResultDirector
+public class ResultDirector : DirectorBase, IResultDirector
 {
     async UniTask Start()
     {
@@ -13,7 +13,7 @@ public class RseultDirector : DirectorBase, IResultDirector
             .OnComplete(
                 () =>
                 {
-                    executeSceneChange("Result", "Title");
+                    executeSceneChange("Title");
                 }
             );
     }

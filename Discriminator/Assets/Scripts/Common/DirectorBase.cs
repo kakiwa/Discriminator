@@ -10,26 +10,28 @@ public class DirectorBase : MonoBehaviour
     protected GameObject sceneDirector = default;
 
     async UniTask Awake() {
+        const string SCENE_DIRECTOR_NAME = "BackGround";
+        const string DIRECTOR_OBJECT_NAME = "Director";
         if (!BGDirector.isLoaded)
         {
             BGDirector.isLoaded = true;
-            await SceneManager.LoadSceneAsync("BackGround", LoadSceneMode.Additive);
+            await SceneManager.LoadSceneAsync(SCENE_DIRECTOR_NAME, LoadSceneMode.Additive);
         }
 
-        foreach (var gameObj in SceneManager.GetSceneByName("BackGround").GetRootGameObjects())
+        foreach (var gameObj in SceneManager.GetSceneByName(SCENE_DIRECTOR_NAME).GetRootGameObjects())
         {
-            if (gameObj.name == "Director") sceneDirector = gameObj;
+            if (gameObj.name == DIRECTOR_OBJECT_NAME) sceneDirector = gameObj;
         }
     }
 
-    protected void executeSceneChange(string current, string next)
+    protected void executeSceneChange(string next)
     {
         ExecuteEvents.Execute<ISceneDirector>(
             sceneDirector,
             null,
             (_, data) =>
             {
-                _.SceneChange(current, next);
+                _.SceneChange(next);
             }
         );
     }

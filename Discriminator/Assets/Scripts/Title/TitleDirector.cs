@@ -9,6 +9,6 @@ public class TitleDirector : DirectorBase, ITitleDirector
 {
     public void ChangeSceneStart()
     {
-        executeSceneChange("Title", "Ingame");
+        executeSceneChange("Ingame");
     }
 }

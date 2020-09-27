@@ -9,11 +9,10 @@ public class Timer : MonoBehaviour
 
     [SerializeField] private GameObject gameDirector = default;
 
-    [SerializeField] private float endTime = 60.0f;
+    [SerializeField] private float endTime = 1.0f;
 
     private float time = 0;
 
-    // Update is called once per frame
     void Update()
     {
         time += Time.deltaTime;
